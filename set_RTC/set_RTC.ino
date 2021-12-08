@@ -1,6 +1,10 @@
+// script for setting the DS1307 RTC time and reading it back every second
+// note: Arduino needs to be connected via USB
+
 
 #include <DFRobot_DS1307.h>
 
+Serial.begin(115200);   // set baud rate of serial monitor
 
 void setup() {
   // put your setup code here, to run once:
@@ -18,12 +22,13 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
+  // testing the RTC by reading the time
   int current_hr = DS1307.getTypeTime(DS1307.eHR)
   int current_min = DS1307.getTypeTime(DS1307.eMIN)
   int current_sec = DS1307.getTypeTime(DS1307.eSEC)
-  
+
+  // print time to SerialMonitor
   Serial.print(current_hr)
   Serial.print(current_min)
   Serial.print(current_sec)
